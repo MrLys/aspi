@@ -4,20 +4,24 @@
             [environ.core :refer [env]]
             ;[clojure.tools.logging :as log]
             [compojure.api.sweet :refer [api context GET POST PATCH ANY]]
+            [compojure.route :as route]
+            [clojure.java.io :as io]
             [aspi.handler :refer [get-current]]
             [ring.adapter.jetty :refer [run-jetty]]))
 
-(def route [(GET (str "/" (:apikey env)) []
-                 (get-current))
-            (ANY "*" []
-                 (route/not-found (slurp (io/resource "404.html"))))])
+(def route
+  [(GET (str "/" (:apikey env)) []
+        (get-current))
+   (ANY "*" []
+        (route/not-found (slurp (io/resource "404.html"))))])
+
 (def app
     (api
       {}
       (context "/api" [] route)))
 
 (defn -main [& args]
-  (run-jetty #'app {:port (Integer. (or port (env :port) 5000))}))
+  (run-jetty #'app {:port (Integer. (or (:port env) 5000))}))
 
 ;;(defn -main
 ;;  [& args]
