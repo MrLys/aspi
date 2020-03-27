@@ -22,7 +22,7 @@
         {}
         routes)
       (wrap-cors
-        :access-control-allow-origin #"https://grafana.tripletex.io"
+        :access-control-allow-origin (re-pattern (:origin env))
         :access-control-allow-methods [:get]
         :access-control-allow-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"]
         )))
