@@ -3,7 +3,7 @@
   (:require ;[org.httpkit.server :refer :all]
             [environ.core :refer [env]]
             ;[clojure.tools.logging :as log]
-            [compojure.api.sweet :refer [api context GET POST PATCH]]
+            [compojure.api.sweet :refer [api context GET POST PATCH ANY]]
             [aspi.handler :refer [get-current]]
             [ring.adapter.jetty :refer [run-jetty]]))
 
