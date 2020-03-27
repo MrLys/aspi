@@ -57,6 +57,7 @@
 (defn get-current []
   (let [today (java.time.LocalDate/now)
         data (fetcher-memo today)]
+    (println data)
     (if (not (nil? data))
-    data
+    (ok(:body data))
     (not-found {}))))

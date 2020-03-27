@@ -10,6 +10,7 @@
                  [metosin/compojure-api "2.0.0-alpha26"]
                  [ring/ring-jetty-adapter "1.6.3"]
                  [org.clojure/core.memoize "0.8.2"]
+                 [ring-cors "0.1.13"]
                  [clj-http "3.10.0"]
                  ;environment
                  [environ "1.1.0"]]
