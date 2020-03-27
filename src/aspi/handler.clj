@@ -1,8 +1,8 @@
 (ns aspi.handler
   (:require [ring.util.http-response :refer [ok not-found created unauthorized]]
              [clojure.core.memoize :as memo]
-             [clojure.java.io :as io]
              [clj-http.client :as client]
+             [clojure.data.json :as json]
              [environ.core :refer [env]]))
              ;[clojure.tools.logging :as log]))
 
@@ -57,7 +57,6 @@
 (defn get-current []
   (let [today (java.time.LocalDate/now)
         data (fetcher-memo today)]
-    (println data)
     (if (not (nil? data))
-    (ok(:body data))
+      (ok (json/read-str (:body data)))
     (not-found {}))))

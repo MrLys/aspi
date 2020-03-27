@@ -1,9 +1,7 @@
 (ns aspi.core
   (:gen-class)
-  (:require ;[org.httpkit.server :refer :all]
-            [environ.core :refer [env]]
-            ;[clojure.tools.logging :as log]
-            [compojure.api.sweet :refer [api context GET POST PATCH ANY]]
+  (:require [environ.core :refer [env]]
+            [compojure.api.sweet :refer [api GET ANY]]
             [ring.middleware.cors :refer [wrap-cors]]
             [compojure.route :as route]
             [clojure.java.io :as io]
@@ -29,10 +27,3 @@
 
 (defn -main [& args]
   (run-jetty #'app {:port (Integer. (or (:port env) 5000))}))
-
-;;(defn -main
-;;  [& args]
-;;  (run-server app {:port 3000})) ;; http-kit complains that it cannot parse from string to Number?
-
-
-

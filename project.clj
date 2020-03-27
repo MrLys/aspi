@@ -12,6 +12,7 @@
                  [org.clojure/core.memoize "0.8.2"]
                  [ring-cors "0.1.13"]
                  [clj-http "3.10.0"]
+                 [org.clojure/data.json "1.0.0"]
                  ;environment
                  [environ "1.1.0"]]
   :main ^:skip-aot aspi.core
