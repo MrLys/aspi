@@ -1,15 +1,14 @@
 (ns aspi.handler
   (:require [ring.util.http-response :refer [ok not-found created unauthorized]]
              [clojure.core.memoize :as memo]
-             [clojure.data.json :as json]
              [clojure.java.io :as io]
              [clj-http.client :as client]
-             [environ.core :refer [env]]
-             [clojure.tools.logging :as log]))
+             [environ.core :refer [env]]))
+             ;[clojure.tools.logging :as log]))
 
 
 (defn- get-current-num [i]
-  (log/info (str "checking for " i "\n"))
+  ;(log/info (str "checking for " i "\n"))
   (rand-int 98))
 
 
@@ -43,12 +42,11 @@
   (search-google-for-image (get-current-num-memo index)))
 
 (defn fetcher [a]
-  (log/info (str "working in fetcher on " a "\n"))
+  ;(log/info (str "working in fetcher on " a "\n"))
   (get-data a))
 
 (defn image-fetcher [today]
-  (let [data (fetcher today)
-        items (json/read-str (:body (:items data)))]
+  (let [data (fetcher today)]
     (if (not (nil? data))
       data
       nil)))
@@ -59,4 +57,6 @@
 (defn get-current []
   (let [today (java.time.LocalDate/now)
         data (fetcher-memo today)]
-    data))
+    (if (not (nil? data))
+    data
+    (not-found {}))))

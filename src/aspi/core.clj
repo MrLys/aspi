@@ -1,8 +1,8 @@
 (ns aspi.core
   (:gen-class)
-  (:require [org.httpkit.server :refer :all]
+  (:require ;[org.httpkit.server :refer :all]
             [environ.core :refer [env]]
-            [clojure.tools.logging :as log]
+            ;[clojure.tools.logging :as log]
             [compojure.api.sweet :refer [api context GET POST PATCH]]
             [aspi.handler :refer [get-current]]
             [ring.adapter.jetty :refer [run-jetty]]))
@@ -14,7 +14,7 @@
       {}
       (context "/api" [] route)))
 
-(defn -dev-main [& args]
+(defn -main [& args]
   (run-jetty #'app {:port 3000}))
 
 ;;(defn -main

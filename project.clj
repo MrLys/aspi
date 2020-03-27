@@ -7,14 +7,8 @@
                  [prismatic/schema "1.1.9"]
                  [metosin/compojure-api "2.0.0-alpha26"]
                  [ring/ring-jetty-adapter "1.6.3"]
-                 [org.clojure/core.memoize "0.5.6"]
-                 [ring "1.7.1"]
+                 [org.clojure/core.memoize "0.8.2"]
                  [clj-http "3.10.0"]
-                 [clj-time "0.15.2"]
-                 [http-kit "2.3.0"]
-                 [org.clojure/data.json "1.0.0"]
-                 ;logging
-                 [org.clojure/tools.logging "0.6.0"]
                  ;environment
                  [environ "1.1.0"]]
   :main ^:skip-aot aspi.core
