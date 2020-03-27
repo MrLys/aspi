@@ -14,5 +14,7 @@
                  ;environment
                  [environ "1.1.0"]]
   :main ^:skip-aot aspi.core
+  :plugins [[environ/environ.lein "0.3.1"]]
+  :hooks [environ.leiningen.hooks]
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:main aspi.core :aot :all}})
