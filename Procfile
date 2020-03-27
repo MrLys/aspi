@@ -1,1 +1,1 @@
-web: lein trampopline -m aspi.core
+web: lein trampoline -m aspi.core
