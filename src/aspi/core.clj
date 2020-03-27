@@ -8,14 +8,16 @@
             [ring.adapter.jetty :refer [run-jetty]]))
 
 (def route [(GET (str "/" (:apikey env)) []
-                 (get-current))])
+                 (get-current))
+            (ANY "*" []
+                 (route/not-found (slurp (io/resource "404.html"))))])
 (def app
     (api
       {}
       (context "/api" [] route)))
 
 (defn -main [& args]
-  (run-jetty #'app {:port 3000}))
+  (run-jetty #'app {:port (Integer. (or port (env :port) 5000))}))
 
 ;;(defn -main
 ;;  [& args]
