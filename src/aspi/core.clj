@@ -5,12 +5,18 @@
             [ring.middleware.cors :refer [wrap-cors]]
             [compojure.route :as route]
             [clojure.java.io :as io]
-            [aspi.handler :refer [get-current]]
+            [aspi.handler :refer [get-current verify-params get-daily-ten-links]]
             [ring.adapter.jetty :refer [run-jetty]]))
 
 (def routes
-  [(GET (str "/api/" (:apikey env)) []
-         (get-current))
+  [(GET "/api/single" []
+        :query-params [user :- String]
+        :header-params [api-key :- String]
+        (verify-params get-current user api-key))
+   (GET "/api" []
+             :header-params [api-key :- String]
+             :query-params [user :- String]
+             (verify-params get-daily-ten-links user api-key))
    (ANY "*" []
         (route/not-found (slurp (io/resource "404.html"))))])
 
