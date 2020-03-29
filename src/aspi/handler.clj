@@ -104,5 +104,7 @@
   (log/info (str api-key))
   (if (= api-key (:apikey env))
     (handler)
-    (not-found {:error "Not found"})))
+    (do 
+      (log/info "invalid api-key")
+      (not-found {:error "Not found"}))))
 
