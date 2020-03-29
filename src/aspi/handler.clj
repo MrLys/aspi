@@ -87,7 +87,7 @@
     (not-found {})))
 
 
-(defn get-current [user apikey]
+(defn get-current []
   (log-data (build-items
    (fetcher-memo (java.time.LocalDate/now) 1))))
 

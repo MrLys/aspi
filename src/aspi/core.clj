@@ -17,6 +17,9 @@
              :header-params [api-key :- String]
              :query-params [user :- String]
              (verify-params get-daily-ten-links user api-key))
+   (GET "/api/v2/single" []
+        :query-params [user :- String, api-key :- String]
+        (verify-params get-current user api-key))
    (ANY "*" []
         (route/not-found (slurp (io/resource "404.html"))))])
 
